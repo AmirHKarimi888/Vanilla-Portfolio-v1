@@ -15,10 +15,11 @@ body {
   box-shadow: 0 5px 8px rgba(0, 0, 0, 0.2);
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  background: #fff;
+  background: rgba(230, 230, 230, 0.5);
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 10;
 }
 
 .logoContainer {
@@ -34,7 +35,6 @@ body {
 .logo img {
   width: 42px;
   border-radius: 100px;
-  border: 1px solid rgba(0, 0, 0, 0.4);
 }
 
 .linksContainer {
@@ -67,7 +67,7 @@ body {
   font-size: large;
   /* border: 1px solid rgba(0, 0, 0, 0.4);
   border-radius: 5px; */
-  background: #fff;
+  background: none;
   border: 0px;
   color: rgba(0, 0, 0, 0.6);
 }
@@ -80,4 +80,126 @@ body {
 .searchBtn:focus {
   border: 1px solid rgba(0, 0, 0, 0.4);
   border-radius: 5px;
+}
+
+
+
+
+/*Main*/
+
+
+@media(max-width: 500px) {
+  .intro {
+    /* margin-top: 64px; */
+    width: 100%;
+    height: 100vh;
+    background: url("https://wallpapershome.com/images/pages/pic_v/25452.jpeg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    opacity: 0.8;
+
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    line-height: 50px;
+    letter-spacing: 5px;
+    color: #fff;
+    font-size: 120%;
+  }  
+
+
+  .intro2 {
+    width: 100%;
+    height: 100vh;
+    background: #fff;
+  
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    line-height: 50px;
+    letter-spacing: 5px;
+    color: #fff;
+    font-size: 120%;
+  }
+}
+
+@media(min-width: 500px) {
+  .intro {
+    /* margin-top: 64px; */
+    width: 100%;
+    height: 100vh;
+    background: url("https://wallpapershome.com/images/pages/pic_h/25452.jpeg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    opacity: 0.8;
+
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    line-height: 50px;
+    letter-spacing: 5px;
+    color: #fff;
+    font-size: 120%;
+  }
+
+  .intro2 {
+    width: 100%;
+    height: 100vh;
+    background: #fff;
+  
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    line-height: 50px;
+    letter-spacing: 5px;
+    color: #fff;
+    font-size: 120%;
+  }
+}
+
+.introTitle {
+  animation: moveInBottom 1s ease-out;
+}
+.introSub {
+  animation: moveInBottom 1s ease-out;
+}
+
+
+
+.intro2 li {
+  height: 100vh;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  font-size: 90%;
+}
+
+.intro2 li img {
+  width: 81%;
+  margin: 0 auto;
+}
+
+.intro2Title {
+  color: rgba(0, 0, 0, 0.6);
+}
+.intro2Sub {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+@keyframes moveInBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
 }
