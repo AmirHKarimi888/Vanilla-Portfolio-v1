@@ -55,13 +55,13 @@ body {
   color: rgba(230, 230, 230, 0.8);
 }
 
-.searchBtnContainer {
+.sidebarBtnContainer {
   display: grid;
   justify-content: center;
   align-items: center;
 }
 
-.searchBtn {
+.sidebarBtn {
   width: 36px;
   aspect-ratio: 1;
   cursor: pointer;
@@ -73,12 +73,12 @@ body {
   color: rgba(230, 230, 230, 0.8);
 }
 
-.searchBtn:hover {
+.sidebarBtn:hover {
   background: rgba(0, 0, 0, 0.1);
   border-radius: 5px;
 }
 
-.searchBtn:focus {
+.sidebarBtn:focus {
   border: 1px solid rgba(0, 0, 0, 0.4);
   border-radius: 5px;
 }
@@ -86,10 +86,34 @@ body {
 
 
 
+.sidebarBackdrop {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 11;
+  display: none;
+  justify-content: end;
+}
+
+.sidebar {
+  width: 240px;
+  height: 100vh;
+  background: #fff;
+  display: none;
+}
+
+
 /*Main*/
 
+.mainContainer {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+}
 
-@media(max-width: 500px) {
+@media(max-width: 600px) {
   .intro {
     /* margin-top: 64px; */
     width: 100%;
@@ -127,7 +151,22 @@ body {
 
   .intro3 {
     width: 100%;
-    height: 50vh;
+    height: 100vh;
+  
+    display: grid inline-block;
+    grid-template-columns: repeat(1, 1fr);
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    line-height: 50px;
+    letter-spacing: 5px;
+    color: #fff;
+    font-size: 120%;
+  }
+
+  .intro4 {
+    width: 100%;
+    height: 100vh;
   
     display: grid inline-block;
     grid-template-columns: repeat(1, 1fr);
@@ -141,7 +180,7 @@ body {
   }
 }
 
-@media(min-width: 500px) {
+@media(min-width: 600px) {
   .intro {
     /* margin-top: 64px; */
     width: 100%;
@@ -176,6 +215,20 @@ body {
   }
 
   .intro3 {
+    width: 100%;
+    height: 100vh;
+  
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    line-height: 50px;
+    letter-spacing: 5px;
+    font-size: 120%;
+  }
+
+  .intro4 {
     width: 100%;
     height: 100vh;
   
@@ -246,6 +299,29 @@ body {
   color: rgba(0, 0, 0, 0.6);
 }
 
+
+
+.intro4 li {
+  height: 50vh;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  font-size: 90%;
+  color: #fff;
+  opacity: 0;
+}
+
+.intro4 li img {
+  width: 81%;
+  margin: 0 auto;
+}
+
+.intro4Title {
+  color: rgba(0, 0, 0, 0.6);
+}
+.intro4Sub {
+  color: rgba(0, 0, 0, 0.6);
+}
 
 @keyframes moveInTop {
   0% {

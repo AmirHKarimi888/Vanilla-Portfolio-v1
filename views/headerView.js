@@ -22,16 +22,42 @@ class Header extends App {
               </ul>
             </div>
 
-            <div class="searchBtnContainer">
-              <button class="searchBtn"><i class="fa fa-search"></i></button>
+            <div class="sidebarBtnContainer">
+              <button class="sidebarBtn"><i class="fa fa-bars"></i></button>
             </div>
             
           </nav>
+
+          <div class="sidebarBackdrop">
+            <ul class="sidebar">
+              
+            </ul>
+          </div>
         </div>
         `
-
-
     }
+
+
+    eventHandler() {
+        const sidebarBtn = document.querySelector(".sidebarBtn");
+        const sidebarBackdrop = document.querySelector(".sidebarBackdrop");
+        const sidebar = document.querySelector(".sidebar");
+
+        sidebarBtn.addEventListener("click", () => {
+            sidebarBackdrop.style.display = "grid";
+            sidebar.style.display = "grid";
+            sidebar.style.animation = "moveInRight 0.3s ease-out";
+        });
+
+        sidebarBackdrop.addEventListener("click", () => {
+            sidebarBackdrop.style.display = "none";
+            sidebar.style.display = "none";
+        })
+
+        sidebar.addEventListener("click", (event) => event.stopPropagation());
+    }
+
+
 }
 
 
