@@ -6,7 +6,42 @@ class Header extends App {
         super();
 
         this.element = document.querySelector("header");
+    }
 
+
+    eventHandler() {
+        const sidebarBtn = document.querySelector(".sidebarBtn");
+        const sidebarBackdrop = document.querySelector(".sidebarBackdrop");
+        const sidebar = document.querySelector(".sidebar");
+
+        sidebarBtn.addEventListener("click", () => {
+            sidebarBackdrop.style.display = "grid";
+            sidebar.style.display = "grid";
+        });
+
+        sidebarBackdrop.addEventListener("click", () => {
+            sidebarBackdrop.style.display = "none";
+            sidebar.style.display = "none";
+        })
+
+        sidebar.addEventListener("click", (event) => event.stopPropagation());
+
+        const headerDD1 = document.querySelector("#headerDD1");
+        const headerDDM1 = document.querySelector("#headerDDM1");
+
+        headerDD1.addEventListener("mouseenter", () => {
+            headerDDM1.style.display = "grid";
+        })
+        headerDD1.addEventListener("mouseleave", () => {
+            headerDDM1.style.display = "none";
+        })
+    }
+
+    render() {
+        this.generateMarkup();
+    }
+
+    generateMarkup() {
         this.markup = /*html*/`
         <div class="headerContainer">
           <nav class="navmenu">
@@ -19,6 +54,14 @@ class Header extends App {
               <ul class="links">
                <li><a href="/">Home</a></li>
                <li><a href="#">About</a></li>
+
+               <li id="headerDD1">
+                 <a href="#">Dropdown</a>
+
+                 <ul id="headerDDM1">
+                   
+                 </ul>
+               </li>
               </ul>
             </div>
 
@@ -35,29 +78,10 @@ class Header extends App {
           </div>
         </div>
         `
+
+        this.clear();
+        this.element.insertAdjacentHTML("afterbegin", this.markup);
     }
-
-
-    eventHandler() {
-        const sidebarBtn = document.querySelector(".sidebarBtn");
-        const sidebarBackdrop = document.querySelector(".sidebarBackdrop");
-        const sidebar = document.querySelector(".sidebar");
-
-        sidebarBtn.addEventListener("click", () => {
-            sidebarBackdrop.style.display = "grid";
-            sidebar.style.display = "grid";
-            sidebar.style.animation = "moveInRight 0.3s ease-out";
-        });
-
-        sidebarBackdrop.addEventListener("click", () => {
-            sidebarBackdrop.style.display = "none";
-            sidebar.style.display = "none";
-        })
-
-        sidebar.addEventListener("click", (event) => event.stopPropagation());
-    }
-
-
 }
 
 

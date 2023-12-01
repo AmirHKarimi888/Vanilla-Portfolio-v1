@@ -8,16 +8,6 @@ class App {
     clear() {
         this.element.innerHTML = "";
     }
-
-    render() {
-        this.generateMarkup();
-    }
-
-    generateMarkup() {
-
-        this.clear();
-        this.element.insertAdjacentHTML("afterbegin", this.markup);
-    }
 }
 
 export default App;
