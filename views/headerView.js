@@ -17,11 +17,13 @@ class Header extends App {
         sidebarBtn.addEventListener("click", () => {
             sidebarBackdrop.style.display = "grid";
             sidebar.style.display = "grid";
+            sidebar.style.animation = "moveInRight 0.3s ease-out";
         });
 
         sidebarBackdrop.addEventListener("click", () => {
             sidebarBackdrop.style.display = "none";
             sidebar.style.display = "none";
+            sidebar.style.animation = "moveInLeft 0.3s ease-out";
         })
 
         sidebar.addEventListener("click", (event) => event.stopPropagation());

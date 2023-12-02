@@ -11,11 +11,8 @@ body {
 .navmenu {
   width: 100%;
   height: 63px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-  box-shadow: 0 5px 8px rgba(0, 0, 0, 0.2);
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  background: rgba(0, 0, 0, 0.8);
   position: fixed;
   top: 0;
   left: 0;
@@ -60,7 +57,8 @@ body {
 
 .links li a {
   text-decoration: none;
-  color: rgba(230, 230, 230, 0.8);
+  /* color: rgba(230, 230, 230, 0.8); */
+  color: #fff;
 }
 
 .links li a:hover {
@@ -98,7 +96,8 @@ body {
   border-radius: 5px; */
   background: none;
   border: 0px;
-  color: rgba(230, 230, 230, 0.8);
+  /* color: rgba(230, 230, 230, 0.8); */
+  color: #fff;
 }
 
 .sidebarBtn:hover {
@@ -131,7 +130,6 @@ body {
   height: 100vh;
   background: rgba(230, 230, 230, 1);
   display: none;
-  animation: moveInRight 0.3s ease-out;
 }
 
 
@@ -370,6 +368,7 @@ body {
   margin-top: 40px;
   margin-bottom: 90px;
   color: rgba(0, 0, 0, 0.6);
+  opacity: 0;
 }
 
 .portfolioTitle {
@@ -393,7 +392,7 @@ body {
     display: grid;
     justify-content: center;
     padding: 10px;
-    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 6px 6px rgba(0, 0, 0, 0.3);
     line-height: 24px;
     opacity: 1;
   }
@@ -407,9 +406,10 @@ body {
     margin: 10px 0 10px 0;
   }
 
-  /* .portDescr {
-    animation: moveInBottom 1s;
-  } */
+  .portDescr {
+    width: 90%;
+    margin: 0 auto;
+  }
 
   .portCardShowMoreBtn, .portCardShowLessBtn {
     cursor: pointer;
@@ -425,7 +425,7 @@ body {
     list-style: none;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
+    gap: 20px;
     justify-content: center;
   }
   
@@ -433,8 +433,8 @@ body {
     border: 1px solid rgba(0, 0, 0, 0.1);
     display: grid;
     justify-content: center;
-    padding: 10px;
-    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    box-shadow: 0 6px 6px rgba(0, 0, 0, 0.3);
     line-height: 24px;
     opacity: 1;
   }
@@ -448,9 +448,10 @@ body {
     margin: 10px 0 10px 0;
   }
 
-  /* .portDescr {
-    animation: moveInBottom 1s;
-  } */
+  .portDescr {
+    width: 90%;
+    margin: 0 auto;
+  }
 
   .portCardShowMoreBtn, .portCardShowLessBtn {
     cursor: pointer;
@@ -466,7 +467,7 @@ body {
     list-style: none;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
+    gap: 20px;
     justify-content: center;
   }
   
@@ -474,8 +475,8 @@ body {
     border: 1px solid rgba(0, 0, 0, 0.1);
     display: grid;
     justify-content: center;
-    padding: 10px;
-    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    box-shadow: 0 6px 6px rgba(0, 0, 0, 0.3);
     line-height: 24px;
     opacity: 1;
   }
@@ -489,9 +490,10 @@ body {
     margin: 10px 0 10px 0;
   }
 
-  /* .portDescr {
-    animation: moveInBottom 1s;
-  } */
+  .portDescr {
+    width: 90%;
+    margin: 0 auto;
+  }
 
   .portCardShowMoreBtn, .portCardShowLessBtn {
     cursor: pointer;
