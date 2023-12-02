@@ -1,6 +1,6 @@
 import { portCardShowLess, portCardShowMore, setDefaultPosts } from "../../main";
 import { state } from "../model";
-import App from "./App";
+import App from "./app";
 
 class Main extends App {
     constructor() {

@@ -1,6 +1,6 @@
 import { portCardShowLess, portCardShowMore } from "../../main";
 import { state } from "../model";
-import App from "../views/App";
+import App from "../views/app";
 
 class portCardView extends App {
     constructor() {

@@ -1,4 +1,4 @@
-import App from "./App";
+import App from "./app";
 
 class Footer extends App {
     constructor() {

@@ -1,5 +1,5 @@
 import { state } from "../model";
-import App from "../views/App";
+import App from "../views/app";
 
 class notFoundView extends App {
     constructor() {
