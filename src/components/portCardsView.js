@@ -10,7 +10,7 @@ class portCardView extends App {
 
     eventHandler() {
 
-        document.querySelector("#portfolioLink").style.color = "aqua";
+        document.querySelector("#blogLink").style.color = "aqua";
         document.querySelector("#homeLink").style.color = "#fff";
 
         document.querySelector(".navmenu").style.background = "rgba(0, 0, 0, 0.8)";

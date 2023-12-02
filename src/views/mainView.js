@@ -15,7 +15,7 @@ class Main extends App {
     eventHandler() {
 
         document.querySelector("#homeLink").style.color = "aqua";
-        document.querySelector("#portfolioLink").style.color = "#fff";
+        document.querySelector("#blogLink").style.color = "#fff";
 
         const setAnimations = (scrollPos) => {
 
@@ -173,7 +173,7 @@ class Main extends App {
 
 
       <div class="portfolio">
-        <h3 class="portfolioTitle">Portfolio</h3>
+        <h3 class="portfolioTitle">Posts</h3>
         <ul>
           ${state.posts.slice(0, 6)
                 .map((post) => {
@@ -209,9 +209,9 @@ class Main extends App {
 
     updatePortfolioCard() {
         const markup = /*html*/ `
-        <h3 class="portfolioTitle">Portfolio</h3>
+        <h3 class="portfolioTitle">Posts</h3>
         <ul>
-          ${state.posts.slice(state.posts.length - 6, state.posts.length)
+          ${state.posts.slice(0, 6)
                 .map((post) => {
                     if (post.type === "portfolio") {
                         return (/*html*/`

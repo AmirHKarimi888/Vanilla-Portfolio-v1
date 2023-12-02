@@ -26,13 +26,11 @@ export const portCardShowMore = (id) => {
     state.posts.filter(post => post.id == id ? post.descr = rawPost.descr : null);
   })
 
-  state.posts = state.posts.reverse();
 };
 
 export const portCardShowLess = (id) => {
   state.posts.filter(post => post.id == id ? post.descr = `${post.descr.split(" ").slice(0, 8).join(" ")}...` : null);
 
-  state.posts = state.posts.reverse();
 };
 
 const setSelectedPost = (id = window.location.hash.slice(1)) => {
@@ -46,7 +44,7 @@ const routeManagement = () => {
     let existingPageIds = [];
     state.postsResource.map(post => existingPageIds.push(`${post?.id}`));
   
-    if(window.location.hash === "#portfolio") {
+    if(window.location.hash === "#blog") {
       portCardsView.render();
     } else {
       if(existingPageIds.includes(window.location.hash.slice(1))) {

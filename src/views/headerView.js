@@ -63,7 +63,7 @@ class Header extends App {
             <div class="linksContainer">
               <ul class="links">
                <li><a href="/" id="homeLink">Home</a></li>
-               <li><a href="#portfolio" id="portfolioLink">Portfolio</a></li>
+               <li><a href="#blog" id="blogLink">Blog</a></li>
               </ul>
             </div>
 

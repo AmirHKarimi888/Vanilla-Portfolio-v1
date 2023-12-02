@@ -9,7 +9,7 @@ class notFoundView extends App {
 
     eventHandler() {
 
-        document.querySelector("#portfolioLink").style.color = "#fff";
+        document.querySelector("#blogLink").style.color = "#fff";
         document.querySelector("#homeLink").style.color = "#fff";
 
         document.querySelector(".navmenu").style.background = "rgba(0, 0, 0, 0.8)";
