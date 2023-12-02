@@ -28,15 +28,23 @@ class Header extends App {
 
         sidebar.addEventListener("click", (event) => event.stopPropagation());
 
-        const headerDD1 = document.querySelector("#headerDD1");
-        const headerDDM1 = document.querySelector("#headerDDM1");
+        // const headerDD1 = document.querySelector("#headerDD1");
+        // const headerDDM1 = document.querySelector("#headerDDM1");
 
-        headerDD1.addEventListener("mouseenter", () => {
-            headerDDM1.style.display = "grid";
-        })
-        headerDD1.addEventListener("mouseleave", () => {
-            headerDDM1.style.display = "none";
-        })
+        // headerDD1.addEventListener("mouseenter", () => {
+        //     headerDDM1.style.display = "grid";
+        // })
+        // headerDD1.addEventListener("mouseleave", () => {
+        //     headerDDM1.style.display = "none";
+        // })
+
+        // <li id="headerDD1">
+        // <a href="#">Dropdown</a>
+
+        // <ul id="headerDDM1">
+          
+        // </ul>
+        // </li>
     }
 
     render() {
@@ -54,16 +62,8 @@ class Header extends App {
 
             <div class="linksContainer">
               <ul class="links">
-               <li><a href="/">Home</a></li>
-               <li><a href="#">About</a></li>
-
-               <li id="headerDD1">
-                 <a href="#">Dropdown</a>
-
-                 <ul id="headerDDM1">
-                   
-                 </ul>
-               </li>
+               <li><a href="/" id="homeLink">Home</a></li>
+               <li><a href="#portfolio" id="portfolioLink">Portfolio</a></li>
               </ul>
             </div>
 

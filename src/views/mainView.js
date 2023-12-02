@@ -1,4 +1,4 @@
-import { portCardShowLess, portCardShowMore, setDefaultPosts } from "../main";
+import { portCardShowLess, portCardShowMore, setDefaultPosts } from "../../main";
 import { state } from "../model";
 import App from "./App";
 
@@ -13,6 +13,10 @@ class Main extends App {
     }
 
     eventHandler() {
+
+        document.querySelector("#homeLink").style.color = "aqua";
+        document.querySelector("#portfolioLink").style.color = "#fff";
+
         const setAnimations = (scrollPos) => {
 
             if(scrollPos <= 50) {
@@ -171,7 +175,7 @@ class Main extends App {
       <div class="portfolio">
         <h3 class="portfolioTitle">Portfolio</h3>
         <ul>
-          ${state.posts
+          ${state.posts.slice(0, 6)
                 .map((post) => {
                     if (post.type === "portfolio") {
                         return (/*html*/`
@@ -185,6 +189,8 @@ class Main extends App {
                                 : `<span class="portCardShowLessBtn" id="portCardShowLessBtn${post?.id}">Show Less</span>`
                             } 
                       </p>
+
+                      <a href="#${post?.id}" class="goToPortPageBtn">Read More</a>
                     </li>
                     `
                         );
@@ -205,7 +211,7 @@ class Main extends App {
         const markup = /*html*/ `
         <h3 class="portfolioTitle">Portfolio</h3>
         <ul>
-          ${state.posts
+          ${state.posts.slice(state.posts.length - 6, state.posts.length)
                 .map((post) => {
                     if (post.type === "portfolio") {
                         return (/*html*/`
@@ -219,6 +225,8 @@ class Main extends App {
                                 : `<span class="portCardShowLessBtn" id="portCardShowLessBtn${post?.id}">Show Less</span>`
                             } 
                       </p>
+
+                      <a href="#${post?.id}" class="goToPortPageBtn">Read More</a>
                     </li>
                     `
                         );

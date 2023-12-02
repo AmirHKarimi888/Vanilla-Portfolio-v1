@@ -1,8 +1,7 @@
 
 class App {
-    constructor(element, markup) {
+    constructor(element) {
         this.element = element;
-        this.markup = markup;
     }
 
     clear() {
