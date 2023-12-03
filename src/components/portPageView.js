@@ -1,4 +1,4 @@
-import { state } from "../model";
+import { HTTPRequest, state } from "../model";
 import App from "../views/app";
 
 class portPageView extends App {
@@ -44,22 +44,39 @@ class portPageView extends App {
         this.generateMarkup();
     }
 
-    generateMarkup() {
+    async generateMarkup() {
 
         const post = state.post;
 
         const markup = /*html*/`
         <div class="portfolioPage portfolioPage${post?.id}">
+          <div class="loading"></div>
+        </div>
+        `
+
+        this.clear();
+        this.element.insertAdjacentHTML("afterbegin", markup);
+        this.eventHandler();
+
+        
+        await HTTPRequest.getAllPosts()
+        .then(() => this.updatePortfolioPage())
+    }
+
+
+    updatePortfolioPage() {
+        const post = state.post;
+
+        const markup = /*html*/ `
         <img class="portPoster" src="${post?.poster}" />
         <h4 class="portPageTitle">${post?.title}</h4>
         <p class="portPageDescr">
           ${post?.descr} 
         </p>
-      </div>
-        `
+        `;
 
-        this.clear();
-        this.element.insertAdjacentHTML("afterbegin", markup);
+        document.querySelector(".portfolioPage").innerHTML = "";
+        document.querySelector(".portfolioPage").insertAdjacentHTML("afterbegin", markup);
         this.eventHandler();
     }
 }

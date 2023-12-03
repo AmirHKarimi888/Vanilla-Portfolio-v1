@@ -1,5 +1,5 @@
 import { portCardShowLess, portCardShowMore } from "../../main";
-import { state } from "../model";
+import { HTTPRequest, state } from "../model";
 import App from "../views/app";
 
 class portCardView extends App {
@@ -71,46 +71,26 @@ class portCardView extends App {
         this.generateMarkup();
     }
 
-    generateMarkup() {
+    async generateMarkup() {
 
         const markup = /*html*/`
-        <div class="portfolio" style="display: grid; animation: zoomIn 1s; opacity: 1; margin-top: 130px;">
-        <ul>
-        ${state.posts
-              .map((post) => {
-                  if (post.type === "portfolio") {
-                      return (/*html*/`
-                  <li class="portfolioCard portfolioCard${post?.id}">
-                    <img class="portPoster" src="${post?.poster}" />
-                    <h4 class="portTitle">${post?.title}</h4>
-                    <p class="portDescr">
-                      ${post?.descr} 
-                      ${post?.descr.split(" ").length <= 8
-                              ? `<span class="portCardShowMoreBtn" id="portCardShowMoreBtn${post?.id}">Show More</span>`
-                              : `<span class="portCardShowLessBtn" id="portCardShowLessBtn${post?.id}">Show Less</span>`
-                          } 
-                    </p>
-
-                    <a href="#${post?.id}" class="goToPortPageBtn">Read More</a>
-                  </li>
-                  `
-                      );
-                  }
-              })
-              .join("")}
-      </ul>
+        <div class="portfolio" style="margin-top: 130px;">
+          <div class="loading"></div>
         </div>
         `
 
         this.clear();
         this.element.insertAdjacentHTML("afterbegin", markup);
         this.eventHandler();
+
+        await HTTPRequest.getAllPosts()
+        .then(() => this.updatePortfolioCard())
     }
 
 
     updatePortfolioCard() {
         const markup = /*html*/ `
-        <div class="portfolio" style="display: grid; opacity: 1; margin-top: 130px;">
+        <div class="portfolio" style="margin-top: 130px;">
         <ul>
         ${state.posts
               .map((post) => {

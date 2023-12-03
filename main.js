@@ -2,23 +2,13 @@ import "./style.css";
 import headerView from "./src/views/headerView";
 import mainView from "./src/views/mainView";
 import footerView from "./src/views/footerView";
-import { state } from "./src/model";
+import { HTTPRequest, state } from "./src/model";
 import portPageView from "./src/components/portPageView";
 import portCardsView from "./src/components/portCardsView";
 import notFoundView from "./src/components/notFoundView";
 
-export const setDefaultPosts = () => {
-  state.posts = [];
-
-  state.posts = state.postsResource.map(post => {
-    return {...post};
-  });
-
-  state.posts.filter((post) => {
-    post.descr = `${post.descr.split(" ").slice(0, 8).join(" ")}...`;
-  });
-
-  state.posts = state.posts.reverse();
+export const setDefaultPosts = async () => {
+  await HTTPRequest.getAllPosts();
 };
 
 export const portCardShowMore = (id) => {
@@ -33,28 +23,38 @@ export const portCardShowLess = (id) => {
 
 };
 
-const setSelectedPost = (id = window.location.hash.slice(1)) => {
-  const foundPost = state.postsResource.find(post => post?.id == id);
-  state.post = {...foundPost};
+const setSelectedPost = async (id = window.location.hash.slice(1)) => {
+  // const foundPost = state.postsResource.find(post => post?.id == id);
+  // state.post = {...foundPost};
+
+  await HTTPRequest.getSelectedPost(id);
 }
 
-const routeManagement = () => {
+const routeManagement = async () => {
   if(window.location.hash) {
 
     let existingPageIds = [];
-    state.postsResource.map(post => existingPageIds.push(`${post?.id}`));
-  
-    if(window.location.hash === "#blog") {
-      portCardsView.render();
-    } else {
-      if(existingPageIds.includes(window.location.hash.slice(1))) {
-        setSelectedPost();
-        portPageView.render();
+
+    await setDefaultPosts()
+    .then(() => {
+      state.postsResource.map(post => existingPageIds.push(`${post?.id}`));
+
+    })
+    .then(async () => {
+      if(window.location.hash === "#blog") {
+        portCardsView.render();
+
       } else {
-        setSelectedPost();
-        notFoundView.render();
+        if(existingPageIds.includes(window.location.hash.slice(1))) {
+          await setSelectedPost()
+          .then(() => portPageView.render());
+          
+        } else {
+          notFoundView.render();
+        }
       }
-    }
+    })
+
   }
 }
 
@@ -67,10 +67,10 @@ mainView.eventHandler();
 footerView.render();
 
 
-routeManagement();
+await routeManagement();
 
 
-window.addEventListener("hashchange", () => {
-  routeManagement();
+window.addEventListener("hashchange", async () => {
+  await routeManagement();
 })
 

@@ -1,15 +1,47 @@
+import { uri } from "./api"
+
 export const state = {
-    postsResource: [
-        { "id": 1, "title": "Post 1", "descr": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto quasi nam veniam, ipsa fugiat unde alias reprehenderit error necessitatibus culpa assumenda tempora earum, cumque illo nobis placeat reiciendis! Nisi, pariatur!", "poster": "https://wallpapershome.com/images/pages/ico_h/3962.jpg", "type": "portfolio", "likedBy": [], comments: [] },
-        { "id": 2, "title": "Post 2", "descr": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto quasi nam veniam, ipsa fugiat unde alias reprehenderit error necessitatibus culpa assumenda tempora earum, cumque illo nobis placeat reiciendis! Nisi, pariatur!", "poster": "https://wallpapershome.com/images/pages/ico_h/3955.jpg", "type": "portfolio", "likedBy": [], comments: [] },
-        { "id": 3, "title": "Post 3", "descr": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto quasi nam veniam, ipsa fugiat unde alias reprehenderit error necessitatibus culpa assumenda tempora earum, cumque illo nobis placeat reiciendis! Nisi, pariatur!", "poster": "https://wallpapershome.com/images/pages/ico_h/177.jpg", "type": "portfolio", "likedBy": [], comments: [] },
-        { "id": 4, "title": "Post 4", "descr": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto quasi nam veniam, ipsa fugiat unde alias reprehenderit error necessitatibus culpa assumenda tempora earum, cumque illo nobis placeat reiciendis! Nisi, pariatur!", "poster": "https://wallpapershome.com/images/pages/ico_h/5357.jpg", "type": "portfolio", "likedBy": [], comments: [] },
-        { "id": 5, "title": "Post 5", "descr": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto quasi nam veniam, ipsa fugiat unde alias reprehenderit error necessitatibus culpa assumenda tempora earum, cumque illo nobis placeat reiciendis! Nisi, pariatur!", "poster": "https://wallpapershome.com/images/pages/ico_h/3946.jpg", "type": "portfolio", "likedBy": [], comments: [] },
-        { "id": 6, "title": "Post 6", "descr": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto quasi nam veniam, ipsa fugiat unde alias reprehenderit error necessitatibus culpa assumenda tempora earum, cumque illo nobis placeat reiciendis! Nisi, pariatur!", "poster": "https://wallpapershome.com/images/pages/ico_h/3945.jpg", "type": "portfolio", "likedBy": [], comments: [] },
-        { "id": 7, "title": "Post 7", "descr": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto quasi nam veniam, ipsa fugiat unde alias reprehenderit error necessitatibus culpa assumenda tempora earum, cumque illo nobis placeat reiciendis! Nisi, pariatur!", "poster": "https://wallpapershome.com/images/pages/pic_h/25490.jpg", "type": "portfolio", "likedBy": [], comments: [] },
-        { "id": 8, "title": "Post 8", "descr": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto quasi nam veniam, ipsa fugiat unde alias reprehenderit error necessitatibus culpa assumenda tempora earum, cumque illo nobis placeat reiciendis! Nisi, pariatur!", "poster": "https://wallpapershome.com/images/pages/pic_h/17394.jpg", "type": "portfolio", "likedBy": [], comments: [] },
-        { "id": 9, "title": "Post 9", "descr": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto quasi nam veniam, ipsa fugiat unde alias reprehenderit error necessitatibus culpa assumenda tempora earum, cumque illo nobis placeat reiciendis! Nisi, pariatur!", "poster": "https://wallpapershome.com/images/pages/pic_h/12505.jpg", "type": "portfolio", "likedBy": [], comments: [] },
-    ],
+    postsResource: [],
     posts: [],
     post: {}
 }
+
+
+class HTTPRequests {
+
+    async getAllPosts() {
+        try {
+            await fetch(uri + "posts")
+            .then(res => res.json())
+            .then(data => state.postsResource = data)
+            .then(() => {
+                state.posts = [];
+
+                state.posts = state.postsResource.map(post => {
+                  return {...post};
+                });
+              
+                state.posts.filter((post) => {
+                  post.descr = `${post.descr.split(" ").slice(0, 8).join(" ")}...`;
+                });
+              
+                state.posts = state.posts.reverse();
+            })
+            
+        } catch(err) {
+            console.log(err.message);
+        }
+    }
+
+    async getSelectedPost(id) {
+        try {
+            await fetch(uri + "posts/" + id)
+            .then(res => res.json())
+            .then(data => state.post = data);
+        } catch(err) {
+            console.log(err.message);
+        }
+    }
+}
+
+export const HTTPRequest = new HTTPRequests();

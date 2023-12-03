@@ -1,5 +1,5 @@
 import { portCardShowLess, portCardShowMore, setDefaultPosts } from "../../main";
-import { state } from "../model";
+import { HTTPRequest, state } from "../model";
 import App from "./app";
 
 class Main extends App {
@@ -12,7 +12,7 @@ class Main extends App {
         this.ticking = false;
     }
 
-    eventHandler() {
+    async eventHandler() {
 
         document.querySelector("#homeLink").style.color = "aqua";
         document.querySelector("#blogLink").style.color = "#fff";
@@ -71,13 +71,13 @@ class Main extends App {
                     "moveInRight 1s";
             }
 
-            if (
-                scrollPos >= 4 * window.innerHeight - 60 &&
-                scrollPos <= 5 * window.innerHeight - 60
-            ) {
-                document.querySelector(".portfolio").style.opacity = "1";
-                document.querySelector(".portfolio").style.animation = "zoomIn 1s";
-            }
+            // if (
+            //     scrollPos >= 4 * window.innerHeight - 60 &&
+            //     scrollPos <= 5 * window.innerHeight - 60
+            // ) {
+            //     document.querySelector(".portfolio").style.opacity = "1";
+            //     document.querySelector(".portfolio").style.animation = "zoomIn 1s";
+            // }
         };
 
         document.addEventListener("scroll", () => {
@@ -118,14 +118,14 @@ class Main extends App {
                 document.querySelector(`.portfolioCard${id}`).querySelector(".portDescr").style.animation = "moveInTop 1s";
             });
         });
+
     }
 
     render() {
         this.generateMarkup();
     }
 
-    generateMarkup() {
-        setDefaultPosts();
+    async generateMarkup() {
         this.markup = /*html*/ `
         <div class="mainContainer">
           <div class="intro">
@@ -171,40 +171,18 @@ class Main extends App {
         </li>
       </ul>
 
-
       <div class="portfolio">
-        <h3 class="portfolioTitle">Posts</h3>
-        <ul>
-          ${state.posts.slice(0, 6)
-                .map((post) => {
-                    if (post.type === "portfolio") {
-                        return (/*html*/`
-                    <li class="portfolioCard portfolioCard${post?.id}" >
-                      <img class="portPoster" src="${post?.poster}" />
-                      <h4 class="portTitle">${post?.title}</h4>
-                      <p class="portDescr">
-                        ${post?.descr}
-                        ${post?.descr.split(" ").length <= 8
-                                ? `<span class="portCardShowMoreBtn" id="portCardShowMoreBtn${post?.id}">Show More</span>`
-                                : `<span class="portCardShowLessBtn" id="portCardShowLessBtn${post?.id}">Show Less</span>`
-                            } 
-                      </p>
-
-                      <a href="#${post?.id}" class="goToPortPageBtn">Read More</a>
-                    </li>
-                    `
-                        );
-                    }
-                })
-                .join("")}
-        </ul>
+        <div class="loading"></div>
       </div>
-        </div>
         `;
 
         this.clear();
         this.element.insertAdjacentHTML("afterbegin", this.markup);
         this.eventHandler();
+
+
+        await HTTPRequest.getAllPosts()
+        .then(() => this.updatePortfolioCard())
     }
 
     updatePortfolioCard() {
